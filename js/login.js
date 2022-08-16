@@ -29,7 +29,7 @@ function validateLogin() {
 
 function successLogin() {
 
-    if (validateLogin() || onSignIn(googleUser)) {
+    if (validateLogin()) {
         window.location.href = "./inicio.html"
     }
 }
@@ -40,6 +40,7 @@ function onSignIn(googleUser) {
     console.log('Name: ' + profile.getName());
     console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail());
+    successLogin();
   }
 
 document.getElementById("loginBtn").addEventListener("click", function () {
