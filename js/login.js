@@ -27,21 +27,16 @@ function validateLogin() {
     }
 }
 
-function init() {
-    gapi.load('auth2', function () {
-    });
-}
 
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     console.log('ID: ' + profile.getId());
     console.log('Name: ' + profile.getName());
     console.log('Image URL: ' + profile.getImageUrl());
-    successLogin();
 }
 
 function successLogin() {
-    if ((validateLogin()) || (GoogleAuth.isSignedIn.get())) {
+    if (validateLogin()) {
         window.location.href = "./inicio.html"
     }
 }
