@@ -32,14 +32,7 @@ function onSignIn(googleUser) {
     console.log('ID: ' + profile.getId());
     console.log('Name: ' + profile.getName());
     console.log('Image URL: ' + profile.getImageUrl());
-    succesGoogle();
 }
-
-  function succesGoogle() {
-   if (GoogleAuth.isSignedIn.get()) {
-    window.location.href = "./inicio.html"
-   }
-  }
 
   function successLogin() {
 
@@ -52,8 +45,7 @@ function onSignIn(googleUser) {
 document.getElementById("loginBtn").addEventListener("click", function () {
 
     validateLogin();
-    successLogin();
-    
+    successLogin();   
     });
 
 
