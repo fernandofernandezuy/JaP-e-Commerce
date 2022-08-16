@@ -1,6 +1,6 @@
 let password = document.getElementById("passwordLgn")
 let email = document.getElementById("emailLgn")
-let emailError = document.getElementById("email-error") 
+let emailError = document.getElementById("email-error")
 let passwordError = document.getElementById("password-error")
 
 function inputErrorAlert(input, inputError) {
@@ -27,26 +27,29 @@ function validateLogin() {
     }
 }
 
+function init() {
+    gapi.load('auth2', function () {
+    });
+}
+
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     console.log('ID: ' + profile.getId());
     console.log('Name: ' + profile.getName());
     console.log('Image URL: ' + profile.getImageUrl());
+    successLogin();
 }
 
-  function successLogin() {
-
-    if (validateLogin()) {
+function successLogin() {
+    if ((validateLogin()) || (GoogleAuth.isSignedIn.get())) {
         window.location.href = "./inicio.html"
     }
 }
 
-
 document.getElementById("loginBtn").addEventListener("click", function () {
-
     validateLogin();
-    successLogin();   
-    });
+    successLogin();
+});
 
 
 
