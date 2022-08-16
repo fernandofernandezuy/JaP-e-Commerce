@@ -27,13 +27,6 @@ function validateLogin() {
     }
 }
 
-function successLogin() {
-
-    if (validateLogin()) {
-        window.location.href = "./inicio.html"
-    }
-}
-
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     console.log('ID: ' + profile.getId());
@@ -42,6 +35,13 @@ function onSignIn(googleUser) {
     console.log('Email: ' + profile.getEmail());
     successLogin();
   }
+
+  function successLogin() {
+
+    if (validateLogin() || onSignIn(googleUser)) {
+        window.location.href = "./inicio.html"
+    }
+}
 
 document.getElementById("loginBtn").addEventListener("click", function () {
 
