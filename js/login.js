@@ -38,7 +38,7 @@ function validateLogin() {
 }
 
 function successLogin() {
-    if (validateLogin()) {
+    if (validateLogin() || handleCredentialResponse(response)) {
         window.location.href = "./inicio.html"
     }
 }
