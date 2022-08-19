@@ -3,12 +3,6 @@ let email = document.getElementById("emailLgn")
 let emailError = document.getElementById("email-error")
 let passwordError = document.getElementById("password-error")
 
-function inputErrorAlert(input, inputError) {
-    input.style.border = "1px solid red";
-    input.classList.add("inputlgn");
-    inputError.classList.add("show");
-}
-
  function handleCredentialResponse(response) {
     console.log("Encoded JWT ID token: " + response.credential);
   }
@@ -24,6 +18,12 @@ function inputErrorAlert(input, inputError) {
     );
     google.accounts.id.prompt(); 
   }
+
+  function inputErrorAlert(input, inputError) {
+    input.style.border = "1px solid red";
+    input.classList.add("inputlgn");
+    inputError.classList.add("show");
+}
 
 function validateLogin() {
     if (email.value.length === 0 && password.value.length > 0) {
