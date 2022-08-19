@@ -5,18 +5,18 @@ let passwordError = document.getElementById("password-error")
 
 function inputErrorAlert(input, inputError) {
     input.style.border = "1px solid red";
-    input.style.border;
-    input.classList.add("inputlgn")
+    input.classList.add("inputlgn");
     inputError.classList.add("show");
 }
 
  function handleCredentialResponse(response) {
     console.log("Encoded JWT ID token: " + response.credential);
   }
+
   window.onload = function () {
     google.accounts.id.initialize({
       client_id: "455520071179-sm5gig5a1asi0mqspvtv9m7bj3p3tg3v.apps.googleusercontent.com",
-      callback: handleCredentialResponse
+      callback: "handleCredentialResponse"
     });
     google.accounts.id.renderButton(
       document.getElementById("g_id_signin"),
@@ -47,10 +47,14 @@ function successLogin() {
     }
 }
 
-document.getElementById("loginBtn").addEventListener("click", function () {
-    validateLogin();
-    successLogin();
-});
+document.addEventListener("DOMContentLoaded", function(){
+
+    document.getElementById("loginBtn").addEventListener("click", function () {
+        validateLogin();
+        successLogin();
+    });    
+
+    });
 
 
 
