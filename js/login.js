@@ -10,16 +10,20 @@ function inputErrorAlert(input, inputError) {
     inputError.classList.add("show");
 }
 
-function handleCredentialResponse(response) {
-    const responsePayload = decodeJwtResponse(response.credential);
-
-    console.log("ID: " + responsePayload.sub);
-    console.log('Full Name: ' + responsePayload.name);
-    console.log('Given Name: ' + responsePayload.given_name);
-    console.log('Family Name: ' + responsePayload.family_name);
-    console.log("Image URL: " + responsePayload.picture);
-    console.log("Email: " + responsePayload.email);
- }
+ function handleCredentialResponse(response) {
+    console.log("Encoded JWT ID token: " + response.credential);
+  }
+  window.onload = function () {
+    google.accounts.id.initialize({
+      client_id: "455520071179-sm5gig5a1asi0mqspvtv9m7bj3p3tg3v.apps.googleusercontent.com",
+      callback: handleCredentialResponse
+    });
+    google.accounts.id.renderButton(
+      document.getElementById("buttonDiv"),
+      { theme: "outline", size: "large" } 
+    );
+    google.accounts.id.prompt(); 
+  }
 
 function validateLogin() {
     if (email.value.length === 0 && password.value.length > 0) {
@@ -38,7 +42,7 @@ function validateLogin() {
 }
 
 function successLogin() {
-    if (validateLogin() || handleCredentialResponse(response)) {
+    if (validateLogin()) {
         window.location.href = "./inicio.html"
     }
 }
