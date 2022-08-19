@@ -19,7 +19,7 @@ function inputErrorAlert(input, inputError) {
       callback: handleCredentialResponse
     });
     google.accounts.id.renderButton(
-      document.getElementById("buttonDiv"),
+      document.getElementById("g_id_signin"),
       { theme: "outline", size: "large" } 
     );
     google.accounts.id.prompt(); 
