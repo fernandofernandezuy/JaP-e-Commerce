@@ -4,8 +4,6 @@ let emailError = document.getElementById("email-error")
 let passwordError = document.getElementById("password-error")
 
 function handleCredentialResponse(response) {
-    // decodeJwtResponse() is a custom function defined by you
-    // to decode the credential response.
     const responsePayload = decodeJwtResponse(response.credential);
 
     console.log("ID: " + responsePayload.sub);
