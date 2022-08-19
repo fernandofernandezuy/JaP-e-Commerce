@@ -7,7 +7,6 @@ function handleCredentialResponse(response) {
     // decodeJwtResponse() is a custom function defined by you
     // to decode the credential response.
     const responsePayload = decodeJwtResponse(response.credential);
-    login_uri = "https://fernandofernandezuy.github.io/JaP-e-Commerce/inicio.html"
 
     console.log("ID: " + responsePayload.sub);
     console.log('Full Name: ' + responsePayload.name);
