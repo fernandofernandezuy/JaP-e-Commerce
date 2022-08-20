@@ -5,6 +5,7 @@ let passwordError = document.getElementById("password-error")
 
 function handleCredentialResponse(response) {
     const responsePayload = decodeJwtResponse(response.credential);
+    window.location.href = "./inicio.html"
 
     console.log("ID: " + responsePayload.sub);
     console.log('Full Name: ' + responsePayload.name);
