@@ -2,18 +2,6 @@ let password = document.getElementById("passwordLgn")
 let email = document.getElementById("emailLgn")
 let emailError = document.getElementById("email-error")
 let passwordError = document.getElementById("password-error")
-
-function handleCredentialResponse(response) {
-    const responsePayload = decodeJwtResponse(response.credential);
-    window.location.href = "./inicio.html"
-
-    console.log("ID: " + responsePayload.sub);
-    console.log('Full Name: ' + responsePayload.name);
-    console.log('Given Name: ' + responsePayload.given_name);
-    console.log('Family Name: ' + responsePayload.family_name);
-    console.log("Image URL: " + responsePayload.picture);
-    console.log("Email: " + responsePayload.email);
- }
  
   function inputErrorAlert(input, inputError) {
     input.style.border = "1px solid red";
@@ -37,17 +25,18 @@ function validateLogin() {
     }
 }
 
-function successLogin() {
-    if (validateLogin()) {
+function redirectLogin() {
         window.location.href = "./inicio.html"
-    }
 }
 
 document.addEventListener("DOMContentLoaded", function(){
 
     document.getElementById("loginBtn").addEventListener("click", function () {
         validateLogin();
-        successLogin();
+
+        if (validateLogin()) {
+            redirectLogin();
+        }
     });    
 
     });
