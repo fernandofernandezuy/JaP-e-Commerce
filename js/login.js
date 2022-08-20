@@ -2,8 +2,18 @@ let password = document.getElementById("passwordLgn")
 let email = document.getElementById("emailLgn")
 let emailError = document.getElementById("email-error")
 let passwordError = document.getElementById("password-error")
- 
-  function inputErrorAlert(input, inputError) {
+
+function handleCredentialResponse(googleUser) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://fernandofernandezuy.github.io/JaP-e-Commerce/inicio.html');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+      console.log('Signed in as: ' + xhr.responseText);
+    };
+    xhr.send('idtoken=' + id_token);
+  }
+
+function inputErrorAlert(input, inputError) {
     input.style.border = "1px solid red";
     input.classList.add("inputlgn");
     inputError.classList.add("show");
@@ -21,22 +31,22 @@ function validateLogin() {
         email.focus();
         inputErrorAlert(password, passwordError);
     } else {
-        return true
+        return true;
     }
 }
 
 function redirectLogin() {
-        window.location.href = "./inicio.html"
+    if (validateLogin()) {
+        window.location.href = "./inicio.html";
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function(){
 
     document.getElementById("loginBtn").addEventListener("click", function () {
         validateLogin();
-
-        if (validateLogin()) {
-            redirectLogin();
-        }
+        redirectLogin();
+       
     });    
 
     });

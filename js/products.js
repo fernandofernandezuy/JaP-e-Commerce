@@ -1,13 +1,12 @@
 let currentCategoriesArray = [];
 
-function showCategoriesList(){
+function showCategoriesList() {
+  let htmlContentToAppend = "";
 
-    let htmlContentToAppend = "";
-    
-    for(let i = 0; i < currentCategoriesArray.length; i++){
-        let category = currentCategoriesArray[i];
+  for (let i = 0; i < currentCategoriesArray.length; i++) {
+    let category = currentCategoriesArray[i];
 
-            htmlContentToAppend += `
+    htmlContentToAppend += `
             <div onclick="" class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
@@ -22,17 +21,17 @@ function showCategoriesList(){
                     </div>
                 </div>
             </div>
-            `
-        }
+            `;
+  }
 
-        document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
+  document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
+}
+
+document.addEventListener("DOMContentLoaded", function (e) {
+  getJSONData(PRODUCTS_URL).then(function (resultObj) {
+    if (resultObj.status === "ok") {
+      currentCategoriesArray = resultObj.data.products;
+      showCategoriesList();
     }
-
-document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(PRODUCTS_URL).then(function(resultObj){
-        if (resultObj.status === "ok"){
-            currentCategoriesArray = resultObj.data.products
-            showCategoriesList()
-        }
-    })
+  });
 });
