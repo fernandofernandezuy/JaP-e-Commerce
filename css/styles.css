@@ -2,7 +2,7 @@
 .card-body,
 .container,
 .site-header {
-  font-family: 'Raleway', serif !important;
+  font-family: "Raleway", serif !important;
 }
 
 .jumbotron .display-4 {
@@ -34,14 +34,12 @@ nav a {
 }
 
 .inputlgn:focus {
-  color:#212529;
-  background-color:#fff;
-  border-color:red;
-  outline:0;
-  box-shadow:0 0 0 .25rem rgba(255, 38, 0, 0.39)
+  color: #212529;
+  background-color: #fff;
+  border-color: red;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(255, 38, 0, 0.39);
 }
-
-
 
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
@@ -53,8 +51,8 @@ nav a {
   height: 50vh;
   padding: 5em inherit;
   margin-bottom: 0;
-  background-color: #53C0FB;
-  background: url('../img/cover_back.png');
+  background-color: #53c0fb;
+  background: url("../img/cover_back.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -94,12 +92,12 @@ footer {
 }
 
 footer p {
-  margin-bottom: .25rem;
+  margin-bottom: 0.25rem;
 }
 
 .site-header a {
   color: white;
-  transition: ease-in-out color .15s;
+  transition: ease-in-out color 0.15s;
 }
 
 .site-header .dropdown-menu a {
@@ -107,7 +105,7 @@ footer p {
 }
 
 .dropzone {
-  border: 2px dashed #0087F7;
+  border: 2px dashed #0087f7;
   border-radius: 5px;
   background: white;
 }
