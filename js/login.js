@@ -3,16 +3,6 @@ let email = document.getElementById("emailLgn")
 let emailError = document.getElementById("email-error")
 let passwordError = document.getElementById("password-error")
 
-function handleCredentialResponse(googleUser) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://fernandofernandezuy.github.io/JaP-e-Commerce/inicio.html');
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onload = function() {
-      console.log('Signed in as: ' + xhr.responseText);
-    };
-    xhr.send('idtoken=' + id_token);
-  }
-
 function inputErrorAlert(input, inputError) {
     input.style.border = "1px solid red";
     input.classList.add("inputlgn");
@@ -36,17 +26,15 @@ function validateLogin() {
 }
 
 function redirectLogin() {
-    if (validateLogin()) {
-        window.location.href = "./inicio.html";
-    }
+    window.location.href = "./inicio.html"
 }
 
 document.addEventListener("DOMContentLoaded", function(){
 
     document.getElementById("loginBtn").addEventListener("click", function () {
-        validateLogin();
-        redirectLogin();
-       
+        if (validateLogin()) {
+            redirectLogin();
+        }
     });    
 
     });
