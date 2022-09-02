@@ -147,4 +147,5 @@ document.addEventListener("DOMContentLoaded", function (e) {
       });
     }
   });
+  showUserEmail();
 });

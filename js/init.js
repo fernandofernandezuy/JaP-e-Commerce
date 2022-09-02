@@ -1,8 +1,12 @@
+let userEmail = localStorage.getItem("email")
+let catID = localStorage.getItem("catID")
+
+
 const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
 const PUBLISH_PRODUCT_URL =
   "https://japceibal.github.io/emercado-api/sell/publish.json";
 const PRODUCTS_URL =
-  "https://japceibal.github.io/emercado-api/cats_products/101.json";
+  `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
 const PRODUCT_INFO_URL = "https://japceibal.github.io/emercado-api/products/";
 const PRODUCT_INFO_COMMENTS_URL =
   "https://japceibal.github.io/emercado-api/products_comments/";
@@ -42,3 +46,15 @@ let getJSONData = function (url) {
       return result;
     });
 };
+
+
+function showUserEmail() {
+  let htmlContentToAppend = "";
+
+    htmlContentToAppend += `
+           <a class="nav-link" href="my-profile.html"> ${userEmail} </a>
+            `;
+  
+
+  document.getElementById("user-email").innerHTML = htmlContentToAppend;
+}

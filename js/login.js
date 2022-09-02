@@ -25,6 +25,10 @@ function validateLogin() {
   }
 }
 
+function setUserEmail() {
+  localStorage.setItem('email', email.value);
+}
+
 function redirectLogin() {
   window.location.href = "./inicio.html";
 }
@@ -34,5 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (validateLogin()) {
       redirectLogin();
     }
+    setUserEmail();
   });
 });
