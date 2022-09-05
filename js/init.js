@@ -1,7 +1,6 @@
 let userEmail = localStorage.getItem("email")
 let catID = localStorage.getItem("catID")
 
-
 const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
 const PUBLISH_PRODUCT_URL =
   "https://japceibal.github.io/emercado-api/sell/publish.json";

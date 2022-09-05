@@ -25,6 +25,7 @@ function validateLogin() {
   }
 }
 
+//Funcion que guarda el email del usuario localStorage
 function setUserEmail() {
   localStorage.setItem('email', email.value);
 }
