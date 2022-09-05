@@ -57,3 +57,7 @@ function showUserEmail() {
 
   document.getElementById("user-email").innerHTML = htmlContentToAppend;
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  showUserEmail();
+});

@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
       showProductsList();
     };
 
-    showUserEmail();
+   
     showCatName();
 
     document.getElementById("sortAsc").addEventListener("click", function () {
