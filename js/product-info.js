@@ -36,12 +36,6 @@ function showProductInfo() {
   document.getElementById("product-info").innerHTML = htmlContentToAppend;
 }
 
-function showDate() {
-  let today = new Date();
-  let date = `${today.getDate()}/${today.getMonth()}/${today.getFullYear()} - ${today.getHours()}:${today.getMinutes()}`;
-
-  return date;
-}
 
 //Funcion que muestra la cantidad de estrellas de un producto según la puntuacion del cliente.
 function showStars(score) {
