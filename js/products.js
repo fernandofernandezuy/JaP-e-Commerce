@@ -5,6 +5,7 @@ let currentProductsArray = [];
 let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
+let prodID = localStorage.getItem("prodID");
 
 function setProdID(id) {
   localStorage.setItem("prodID", id);
