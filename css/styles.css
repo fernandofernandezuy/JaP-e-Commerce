@@ -22,6 +22,10 @@ nav a {
   user-select: none;
 }
 
+.checked {
+  color: orange;
+}
+
 /* Login style onclick */
 
 .hide {

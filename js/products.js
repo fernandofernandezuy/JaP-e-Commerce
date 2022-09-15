@@ -6,6 +6,11 @@ let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
+function setProdID(id) {
+  localStorage.setItem("prodID", id);
+  window.location = "product-info.html";
+}
+
 function sortProducts(criteria, array) {
   let result = [];
   if (criteria === ORDER_ASC_BY_PRICE) {
@@ -34,7 +39,7 @@ function showProductsList() {
       (minCount == undefined || (parseInt(product.cost) >= minCount)) && (maxCount == undefined || (parseInt(product.cost) <= maxCount))
     ) {
       htmlContentToAppend += `
-            <div onclick="" class="list-group-item list-group-item-action cursor-active">
+            <div onclick="setProdID(${product.id})" class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
                         <img src="${product.image}" alt="${product.name}" class="img-thumbnail">
@@ -77,7 +82,7 @@ function showCatName() {
 }
 
 document.addEventListener("DOMContentLoaded", function (e) {
-  getJSONData(PRODUCTS_URL).then(function (resultObj) {
+  getJSONData(PRODUCTS_URL + catID + EXT_TYPE).then(function (resultObj) {
     if (resultObj.status === "ok") {
       currentProductsArray = resultObj.data.products;
       currentProductsObj = resultObj.data;
@@ -99,8 +104,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
       sortAndShowProducts(ORDER_BY_PROD_REL);
     });
 
-    document.getElementById("clearRangeFilter")
-.addEventListener("click", function () {
+    document.getElementById("clearRangeFilter").addEventListener("click", function () {
         document.getElementById("rangeFilterCountMin").value = "";
         document.getElementById("rangeFilterCountMax").value = "";
 
