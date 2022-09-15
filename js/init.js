@@ -12,6 +12,7 @@ const EXT_TYPE = ".json";
 
 let userEmail = localStorage.getItem("email");
 let catID = localStorage.getItem("catID");
+let prodID = localStorage.getItem("prodID");
 
 let showSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "block";
