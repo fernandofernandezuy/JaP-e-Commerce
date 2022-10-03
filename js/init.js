@@ -1,8 +1,7 @@
 const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
 const PUBLISH_PRODUCT_URL =
   "https://japceibal.github.io/emercado-api/sell/publish.json";
-const PRODUCTS_URL =
-  "https://japceibal.github.io/emercado-api/cats_products/";
+const PRODUCTS_URL = "https://japceibal.github.io/emercado-api/cats_products/";
 const PRODUCT_INFO_URL = "https://japceibal.github.io/emercado-api/products/";
 const PRODUCT_INFO_COMMENTS_URL =
   "https://japceibal.github.io/emercado-api/products_comments/";
@@ -47,18 +46,19 @@ let getJSONData = function (url) {
     });
 };
 
-
 function showUserEmail() {
   let htmlContentToAppend = "";
-
-    htmlContentToAppend += `
-           <a class="nav-link" href="my-profile.html"> ${userEmail} </a>
-            `;
-  
-
-  document.getElementById("user-email").innerHTML = htmlContentToAppend;
+  htmlContentToAppend += `${userEmail}`;
+  document.getElementById("navbarDarkDropdownMenuLink").innerHTML =
+    htmlContentToAppend;
 }
+
 
 document.addEventListener("DOMContentLoaded", function () {
   showUserEmail();
+
+    document.getElementById("logout").addEventListener("click", function () {
+      localStorage.removeItem("email");
+    })
 });
+

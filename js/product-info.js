@@ -2,6 +2,10 @@ let currentProductsArray = [];
 let currentCategoryArray = [];
 let currentProductsCommentsArray = [];
 
+function setProdID(id) {
+  localStorage.setItem("prodID", id);
+  window.location = "product-info.html";
+};
 
 //Funcion que muestra la información del producto seleccionado.
 function showProductInfo() {
@@ -103,6 +107,28 @@ function showCommentsList() {
   }
 }
 
+function showRelatedProducts() {
+
+  let htmlContentToAppend = "";
+  for (let i = 0; i < currentProductsArray.length; i++) {
+    let product = currentProductsArray[i];
+
+    if (prodID != product.id) {
+      htmlContentToAppend += `
+      <div onclick="setProdID(${product.id})" class="card cursor-active mx-2" style="width: 18rem;">
+        <img src="${product.image}" class="card-img-top" alt="${product.name}">
+        <div class="card-body">
+          <p class="card-text">${product.name}</p>
+        </div>
+      </div>
+            `;
+    }
+  }
+
+  document.getElementById("related-products").innerHTML = htmlContentToAppend;
+
+}
+
 document.addEventListener("DOMContentLoaded", function (e) {
   getJSONData(PRODUCTS_URL + catID + EXT_TYPE).then(function (resultObj) {
     if (resultObj.status === "ok") {
@@ -110,6 +136,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
       currentCategoryArray = resultObj.data;
     }
     showProductInfo();
+    showRelatedProducts();
   });
 
   //Realizo la solicitud para obtener la información de los comentarios del producto seleccionado
