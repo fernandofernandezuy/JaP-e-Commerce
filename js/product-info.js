@@ -1,119 +1,135 @@
-let currentProductsArray = [];
-let currentCategoryArray = [];
+let currentProductArray = [];
+let currentRelatedProductsArray = [];
 let currentProductsCommentsArray = [];
+
 
 function setProdID(id) {
   localStorage.setItem("prodID", id);
   window.location = "product-info.html";
-};
+}
 
 //Funcion que muestra la información del producto seleccionado.
-function showProductInfo() {
+function showProductInfo(array) {
   let htmlContentToAppend = "";
-  for (let i = 0; i < currentProductsArray.length; i++) {
-    let product = currentProductsArray[i];
-
-    if (product.id == prodID) {
-      htmlContentToAppend += `
-        <h2>${product.name}</h2>
+    htmlContentToAppend += `
+        <div class="d-flex justify-content-between">
+        <h2>${array.name}</h2> 
+        <button class="btn btn-success" type="button" id="addToCart">Añadir</button>
+      </div>
         <br />
         <hr />
             <h4 class="text-left"><strong>Precio</strong></h4>
-                <p class="lead">${product.currency} ${product.cost}</p>
+                <p class="lead">${array.currency} ${array.cost}</p>
             <h4 class="text-left"><strong>Descripción</strong></h4>
-                <p class="lead">${product.description}</p>
+                <p class="lead">${array.description}</p>
             <h4 class="text-left"><strong>Categoría</strong></h4>
-                <p class="lead">${currentCategoryArray.catName}</p>
+                <p class="lead">${array.category}</p>
             <h4 class="text-left"><strong>Cantidad de vendidos</strong></h4>
-                <p class="lead">${product.soldCount}</p>
+                <p class="lead">${array.soldCount}</p>
             <h4 class="text-left"><strong>Imagenes Ilustrativas</strong></h4>
-                <div class="d-flex col-3">
-                    <img class="img-thumbnail" src="img/prod${prodID}_1.jpg" alt="${product.name}" />
-                    <img class="img-thumbnail" src="img/prod${prodID}_2.jpg" alt="${product.name}" />
-                    <img class="img-thumbnail" src="img/prod${prodID}_3.jpg" alt="${product.name}" />
-                    <img class="img-thumbnail" src="img/prod${prodID}_4.jpg" alt="${product.name}" />
-                </div>
-          
+            <div id="carouselExampleIndicators" class="carousel slide w-75" data-bs-ride="true">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="img/prod${prodID}_1.jpg" class="d-block w-100" alt="${array.name}">
+    </div>
+    <div class="carousel-item">
+      <img src="img/prod${prodID}_2.jpg" class="d-block w-100" alt="${array.name}">
+    </div>
+    <div class="carousel-item">
+      <img src="img/prod${prodID}_3.jpg" class="d-block w-100" alt="${array.name}">
+    </div>
+    <div class="carousel-item">
+      <img src="img/prod${prodID}_4.jpg" class="d-block w-100" alt="${array.name}">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+            
               `;
-    }
-  }
-  document.getElementById("product-info").innerHTML = htmlContentToAppend;
+  document.getElementById("product-info").innerHTML += htmlContentToAppend;
 }
-
 
 //Funcion que muestra la cantidad de estrellas de un producto según la puntuacion del cliente.
 function showStars(score) {
-  let stars = ``
+  let stars = ``;
   if (score == 1) {
     stars = `<span class="fa fa-star checked"></span>
     <span class="fa fa-star"></span>
     <span class="fa fa-star"></span>
     <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>`
-  }
-  else if (score == 2) {
+    <span class="fa fa-star"></span>`;
+  } else if (score == 2) {
     stars = `<span class="fa fa-star checked"></span>
     <span class="fa fa-star checked"></span>
     <span class="fa fa-star"></span>
     <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>`
-  }
-  else if (score == 3) {
-    stars =  `<span class="fa fa-star checked"></span>
+    <span class="fa fa-star"></span>`;
+  } else if (score == 3) {
+    stars = `<span class="fa fa-star checked"></span>
     <span class="fa fa-star checked"></span>
     <span class="fa fa-star checked"></span>
     <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>`
+    <span class="fa fa-star"></span>`;
+  } else if (score == 4) {
+    stars = `<span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star"></span>`;
+  } else {
+    stars = `<span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>`;
   }
-  else if (score == 4) {
-    stars =  `<span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star"></span>`
-  }
-  else  {
-    stars =  `<span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>`
-  }
-  return stars
+  return stars;
 }
 
 //Función que muestra los comentarios escritos por los clientes.
 function showCommentsList() {
-
   let htmlContentToAppend = "";
   for (let i = 0; i < currentProductsCommentsArray.length; i++) {
     let comment = currentProductsCommentsArray[i];
     let score = parseInt(comment.score);
 
-      htmlContentToAppend += `
+    htmlContentToAppend += `
       <div class="list-group-item list-group-item-action">
       <div class="row">
           <div class="col">
               <div class="d-flex w-100 justify-content-between">
-                  <p class="mb-1 lead"> <strong>${comment.user}</strong> - ${comment.dateTime} - ${showStars(score)} </p>
+                  <p class="mb-1 lead"> <strong>${comment.user}</strong> - ${
+      comment.dateTime
+    } - ${showStars(score)} </p>
               </div>
               <p class="mb-1 lead"> ${comment.description} </p>
           </div>
       </div>
   </div>
   `;
-      document.getElementById("comment-list").innerHTML = htmlContentToAppend;
-    
+    document.getElementById("comment-list").innerHTML = htmlContentToAppend;
   }
 }
 
 function showRelatedProducts() {
-
   let htmlContentToAppend = "";
-  for (let i = 0; i < currentProductsArray.length; i++) {
-    let product = currentProductsArray[i];
+  for (let i = 0; i < currentRelatedProductsArray.length; i++) {
+    let product = currentRelatedProductsArray[i];
 
-    if (prodID != product.id) {
+  
       htmlContentToAppend += `
       <div onclick="setProdID(${product.id})" class="card cursor-active mx-2" style="width: 18rem;">
         <img src="${product.image}" class="card-img-top" alt="${product.name}">
@@ -122,21 +138,37 @@ function showRelatedProducts() {
         </div>
       </div>
             `;
-    }
   }
 
-  document.getElementById("related-products").innerHTML = htmlContentToAppend;
+  document.getElementById("related-products").innerHTML += htmlContentToAppend;
+}
+
+function addProductToCart() {
+  let cartItem = localStorage.getItem('cartProduct');
+
+
+    cartItems = localStorage.getItem('cartProduct').split(",");
+    cartItems.push('cartProduct')
+    localStorage.setItem('cartProduct', cartItem);
+    
+ 
 
 }
 
 document.addEventListener("DOMContentLoaded", function (e) {
-  getJSONData(PRODUCTS_URL + catID + EXT_TYPE).then(function (resultObj) {
+  getJSONData(PRODUCT_INFO_URL + prodID + EXT_TYPE).then(function (resultObj) {
     if (resultObj.status === "ok") {
-      currentProductsArray = resultObj.data.products;
-      currentCategoryArray = resultObj.data;
+      currentProductArray = resultObj.data;
+      currentRelatedProductsArray = resultObj.data.relatedProducts;
     }
-    showProductInfo();
+    showProductInfo(currentProductArray);
     showRelatedProducts();
+
+    document.getElementById("addToCart").addEventListener("click", (e) => {
+      localStorage.setItem('cartProduct', JSON.stringify(currentProductArray));
+      addProductToCart();
+    })
+
   });
 
   //Realizo la solicitud para obtener la información de los comentarios del producto seleccionado
@@ -149,5 +181,4 @@ document.addEventListener("DOMContentLoaded", function (e) {
     //Muestro los comentarios de los clientes
     showCommentsList();
   });
- 
 });

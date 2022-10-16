@@ -29,7 +29,11 @@ function validateLogin() {
 //Funcion que guarda el email del usuario localStorage
 function setUserEmail() {
   localStorage.setItem('email', email.value);
-}
+};
+
+function setUserID(id) {
+  localStorage.setItem('userID', id)
+};
 
 function redirectLogin() {
   window.location.href = "./inicio.html";
@@ -41,5 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
       redirectLogin();
     }
     setUserEmail();
+    setUserID(USER_ID);
   });
 });

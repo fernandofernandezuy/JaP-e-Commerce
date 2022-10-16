@@ -19,8 +19,15 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
       <div class="container">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -35,13 +42,32 @@
               <a class="nav-link" href="sell.html">Vender</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDarkDropdownMenuLink"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
               </a>
-              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                <li><a class="dropdown-item" href="./cart.html">Mi carrito</a></li>
-                <li><a class="dropdown-item" href="./my-profile.html">Mi perfil</a></li>
-                <li><a class="dropdown-item" href="./index.html" id="logout">Cerrar sesión</a></li>
+              <ul
+                class="dropdown-menu dropdown-menu-dark"
+                aria-labelledby="navbarDarkDropdownMenuLink"
+              >
+                <li>
+                  <a class="dropdown-item" href="./cart.html">Mi carrito</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="./my-profile.html"
+                    >Mi perfil</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="./index.html" id="logout"
+                    >Cerrar sesión</a
+                  >
+                </li>
               </ul>
             </li>
           </ul>
@@ -50,10 +76,84 @@
     </nav>
     <main>
       <div class="container">
-        <div class="alert alert-danger text-center" role="alert">
-          <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+        <div class="text-center p-4">
+          <h2>Carrito de compras</h2>
         </div>
+        <h3 class="mb-3 ">Articulos a comprar</h3>
+    
+        <table class="table">
+          <thead>
+            <tr class="fs-5">
+              <th scope="col"></th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Costo</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody id="cart-articles">
+           
+          </tbody>
+        </table>
+     
+        <br>
+            <h3 class="mb-3">Tipo de envío</h3>
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio">
+                <input
+                  id="premiumradio"
+                  name="sendingType"
+                  type="radio"
+                  class="custom-control-input"
+                  checked=""
+                  required=""
+                />
+                <label class="custom-control-label h5" for="premiumradio"
+                  >Premium 2 a 5 días (15%)</label
+                >
+              </div>
+              <div class="custom-control custom-radio">
+                <input
+                  id="expressradio"
+                  name="sendingType"
+                  type="radio"
+                  class="custom-control-input"
+                  required=""
+                />
+                <label class="custom-control-label h5" for="premiumradio"
+                  >Express 5 a 8 días (7%)</label
+                >
+              </div>
+              <div class="custom-control custom-radio">
+                <input
+                  id="standardradio"
+                  name="sendingType"
+                  type="radio"
+                  class="custom-control-input"
+                  required=""
+                />
+                <label class="custom-control-label h5" for="standardradio"
+                  >Standard 12 a 15 días (5%)</label
+                >
+              </div>
       </div>
+      <h3 class="mb-3">Dirección de envío</h3>
+      <form class="row g-3">
+        <div class="col-md-6 h5">
+          <label for="inputAddress" class="form-label">Calle</label>
+          <input type="text" class="form-control" id="inputAddress" placeholder="Av. Luis Alberto de Herrera">
+        </div>
+        <div class="col-md-4 h5">
+          <label for="inputCorner" class="form-label h5">Esquina</label>
+          <input type="text" class="form-control" id="inputCorner" placeholder="Rivera">
+        </div>
+        <div class="col-md-2">
+          <label for="inputAddressNum" class="form-label h5">Número</label>
+          <input type="text" class="form-control" id="inputAddressNum" placeholder="1165">
+        </div>
+        
+        </div>
+      
     </main>
     <footer class="text-muted">
       <div class="container">

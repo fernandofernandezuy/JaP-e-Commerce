@@ -58,7 +58,7 @@ function showProductsList() {
     }
   }
 
-  document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
+  document.getElementById("cat-list-container").innerHTML += htmlContentToAppend;
 }
 
 function sortAndShowProducts(sortCriteria) {
