@@ -2,7 +2,6 @@ let currentProductArray = [];
 let currentRelatedProductsArray = [];
 let currentProductsCommentsArray = [];
 
-
 function setProdID(id) {
   localStorage.setItem("prodID", id);
   window.location = "product-info.html";
@@ -11,12 +10,12 @@ function setProdID(id) {
 //Funcion que muestra la información del producto seleccionado.
 function showProductInfo(array) {
   let htmlContentToAppend = "";
-    htmlContentToAppend += `
-        <div class="d-flex justify-content-between">
+  htmlContentToAppend += `
+        <div class="d-flex mt-3 justify-content-between">
         <h2>${array.name}</h2> 
         <button class="btn btn-success" type="button" id="addToCart">Añadir</button>
       </div>
-        <br />
+    
         <hr />
             <h4 class="text-left"><strong>Precio</strong></h4>
                 <p class="lead">${array.currency} ${array.cost}</p>
@@ -26,8 +25,8 @@ function showProductInfo(array) {
                 <p class="lead">${array.category}</p>
             <h4 class="text-left"><strong>Cantidad de vendidos</strong></h4>
                 <p class="lead">${array.soldCount}</p>
-            <h4 class="text-left"><strong>Imagenes Ilustrativas</strong></h4>
-            <div id="carouselExampleIndicators" class="carousel slide w-75" data-bs-ride="true">
+                <hr />
+            <div id="carouselExampleIndicators" class="carousel m-auto slide w-75" data-bs-ride="true">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -57,6 +56,7 @@ function showProductInfo(array) {
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+<hr />
             
               `;
   document.getElementById("product-info").innerHTML += htmlContentToAppend;
@@ -110,12 +110,13 @@ function showCommentsList() {
       <div class="list-group-item list-group-item-action">
       <div class="row">
           <div class="col">
-              <div class="d-flex w-100 justify-content-between">
-                  <p class="mb-1 lead"> <strong>${comment.user}</strong> - ${
-      comment.dateTime
-    } - ${showStars(score)} </p>
-              </div>
+              
+                  <p class="mb-1 lead"> <strong>${
+                    comment.user
+                  } </p>
+              <p class="mb-1"> </strong> ${showStars(score)} </p>
               <p class="mb-1 lead"> ${comment.description} </p>
+              <p class="mb-1 lead"> ${comment.dateTime}</p>
           </div>
       </div>
   </div>
@@ -129,8 +130,7 @@ function showRelatedProducts() {
   for (let i = 0; i < currentRelatedProductsArray.length; i++) {
     let product = currentRelatedProductsArray[i];
 
-  
-      htmlContentToAppend += `
+    htmlContentToAppend += `
       <div onclick="setProdID(${product.id})" class="card cursor-active mx-2" style="width: 18rem;">
         <img src="${product.image}" class="card-img-top" alt="${product.name}">
         <div class="card-body">
@@ -144,15 +144,11 @@ function showRelatedProducts() {
 }
 
 function addProductToCart() {
-  let cartItem = localStorage.getItem('cartProduct');
+  let cartItem = localStorage.getItem("cartProduct");
 
-
-    cartItems = localStorage.getItem('cartProduct').split(",");
-    cartItems.push('cartProduct')
-    localStorage.setItem('cartProduct', cartItem);
-    
- 
-
+  cartItems = localStorage.getItem("cartProduct").split(",");
+  cartItems.push("cartProduct");
+  localStorage.setItem("cartProduct", cartItem);
 }
 
 document.addEventListener("DOMContentLoaded", function (e) {
@@ -165,10 +161,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
     showRelatedProducts();
 
     document.getElementById("addToCart").addEventListener("click", (e) => {
-      localStorage.setItem('cartProduct', JSON.stringify(currentProductArray));
+      localStorage.setItem("cartProduct", JSON.stringify(currentProductArray));
       addProductToCart();
-    })
-
+    });
   });
 
   //Realizo la solicitud para obtener la información de los comentarios del producto seleccionado
