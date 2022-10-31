@@ -7,6 +7,8 @@ let totalPrice = undefined;
 let premiumRadio = document.getElementById("premiumradio");
 let expressRadio = document.getElementById("expressradio");
 let standardRadio = document.getElementById("standardradio");
+let creditCardRadio = document.getElementById("creditCardRadio");
+let accountRadio = document.getElementById("accountRadio");
 
 function showCart(array) {
   let htmlContentToAppend = `
@@ -95,6 +97,29 @@ function showPrices() {
     });
 }
 
+function paymentValidity() {
+  let inputRadios = [creditCardRadio, accountRadio]
+
+  
+    document.getElementById("paymentDiv").classList.add("is-invalid")
+
+
+  for (const input of inputRadios) {
+
+    input.addEventListener("click", function() {
+      document.getElementById("paymentDiv").classList.remove("is-invalid")
+    })
+    
+  }
+}
+
+function paymentModal(boolean) {
+  
+    document.getElementById("cardNumber").disabled = boolean;
+    document.getElementById("cardCode").disabled = boolean;
+    document.getElementById("cardExp").disabled = boolean;
+  
+}
 
 
 
@@ -106,5 +131,42 @@ document.addEventListener("DOMContentLoaded", function (e) {
     showCart(currentArticlesArray); // Show Client Cart
     articleCount = document.getElementById("articleCountInput").value;
     showPrices();
+
+    creditCardRadio.addEventListener("click", function() {
+      paymentModal(false);
+      document.getElementById("accountNumber").disabled = true;
+    });
+
+    accountRadio.addEventListener("click", function() {
+      paymentModal(true);
+      document.getElementById("accountNumber").disabled = false;
+    });
+    
+
+  
+    (() => {
+      'use strict'
+    
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      const forms = document.querySelectorAll('.needs-validation');
+
+      
+      // Loop over them and prevent submission
+      Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+
+
+          if ((!form.checkValidity()) || (!creditCardRadio.checked && !accountRadio.checked) ) {
+            event.preventDefault()
+            event.stopPropagation()
+            if ((!creditCardRadio.checked && !accountRadio.checked)) {paymentValidity();}
+          } else {
+            document.getElementById("alertBought").classList.remove("d-none");
+          }
+    
+          form.classList.add('was-validated')
+        }, false)
+      })
+    })()
   });
 });
