@@ -135,11 +135,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
     creditCardRadio.addEventListener("click", function() {
       paymentModal(false);
       document.getElementById("accountNumber").disabled = true;
+      document.getElementById("paymentText").innerHTML = "Tarjeta de crédito";
     });
 
     accountRadio.addEventListener("click", function() {
       paymentModal(true);
       document.getElementById("accountNumber").disabled = false;
+      document.getElementById("paymentText").innerHTML = "Transferencia bancaria";
     });
     
 
