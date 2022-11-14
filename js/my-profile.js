@@ -12,7 +12,7 @@ if (!userEmail) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-
+    let recentImage = localStorage.getItem("profile-img");
 
     // Show user Information
     emailInput.value = userEmail;
@@ -21,9 +21,10 @@ document.addEventListener("DOMContentLoaded", function () {
     surnameInput.value = localStorage.getItem("userSurname");
     secondSurnameInput.value = localStorage.getItem("userSecondSurname");
     contactPhoneInput.value = localStorage.getItem("userPhoneContact");
-    const recentImage = localStorage.getItem("profile-img");
-    image.setAttribute("src", recentImage);
 
+    if (recentImage) {
+    image.setAttribute("src", recentImage);
+}
     
    
     (() => {
