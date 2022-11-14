@@ -52,7 +52,42 @@ function setCatID(id) {
   window.location = "products.html";
 }
 
-function showCategoriesList(array) {
+function showCategoriesList() {
+  let htmlContentToAppend = "";
+  for (let i = 0; i < currentCategoriesArray.length; i++) {
+    let category = currentCategoriesArray[i];
+
+    if (
+      (minCount == undefined ||
+        (minCount != undefined &&
+          parseInt(category.productCount) >= minCount)) &&
+      (maxCount == undefined ||
+        (maxCount != undefined && parseInt(category.productCount) <= maxCount))
+    ) {
+      htmlContentToAppend += `
+            <div onclick="setCatID(${category.id})" class="list-group-item list-group-item-action cursor-active">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="${category.imgSrc}" alt="${category.description}" class="img-thumbnail">
+                    </div>
+                    <div class="col">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h4 class="mb-1">${category.name}</h4>
+                            <small class="text-muted">${category.productCount} artículos</small>
+                        </div>
+                        <p class="mb-1">${category.description}</p>
+                    </div>
+                </div>
+            </div>
+            `;
+    }
+
+    document.getElementById("cat-list-container").innerHTML =
+      htmlContentToAppend;
+  }
+}
+
+function showCategoriesFiltered(array) {
   let htmlContentToAppend = "";
   for (let i = 0; i < array.length; i++) {
     let category = array[i];
@@ -110,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
   getJSONData(CATEGORIES_URL).then(function (resultObj) {
     if (resultObj.status === "ok") {
       currentCategoriesArray = resultObj.data;
-      showCategoriesList(currentCategoriesArray);
+      showCategoriesList();
       
    
     }
@@ -137,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
       minCount = undefined;
       maxCount = undefined;
 
-      showCategoriesList(currentCategoriesArray);
+      showCategoriesList();
     });
 
   document
@@ -160,17 +195,17 @@ document.addEventListener("DOMContentLoaded", function (e) {
         maxCount = undefined;
       }
 
-      showCategoriesList(currentCategoriesArray);
+      showCategoriesList();
     });
 
-    searchInput.addEventListener("input", e => {
+    searchInput.addEventListener("keyup", e => {
       const searchString = e.target.value
       const filteredCategories = currentCategoriesArray.filter((category) => {
         return (
           category.name.toLowerCase().includes(searchString) || category.description.toLowerCase().includes(searchString)
         )
       })
-      showCategoriesList(filteredCategories);
+      showCategoriesFiltered(filteredCategories);
 
     })
 });
