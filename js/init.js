@@ -64,6 +64,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("logout").addEventListener("click", function () {
       localStorage.removeItem("email");
+      localStorage.removeItem("userID");
+      localStorage.removeItem("userName");
+      localStorage.removeItem("userSecondName");
+      localStorage.removeItem("userSurname");
+      localStorage.removeItem("userSecondSurname");
+      localStorage.removeItem("userPhoneContact");
+      localStorage.removeItem("profile-img");
     })
+
 });
 

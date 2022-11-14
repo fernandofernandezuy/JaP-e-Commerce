@@ -65,10 +65,58 @@
     </nav>
     <main>
       <div class="container">
-        <div class="alert alert-danger text-center" role="alert">
-          <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-        </div>
+      <div class="d-flex justify-content-between">
+      <h3 class="my-3 d-flex align-items-center">Perfil</h3>
+      <img class="mt-3" height="100px" src="img/img_perfil.png" id="profileImg" alt="Imagen de Perfil">
+    </div>
+      <hr>
+      <form action="" class="needs-validation" novalidate>
+      <div class="row">
+      <div class="col-6">
+        <label for="firstName" class="form-label mt-3">Primer nombre<strong>*</strong></label>
+        <input required type="text" class="form-control col-6" id="firstName">
       </div>
+      <div class="col-6">
+        <label for="secondName" class="form-label mt-3">Segundo nombre</label>
+        <input  type="text" class="form-control col-6" id="secondName">
+      </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <label for="firstSurName" class="form-label mt-3">Primer apellido<strong>*</strong></label>
+          <input required type="text" class="form-control col-6" id="firstSurName">
+        </div>
+        <div class="col-6">
+          <label for="secondSurName" class="form-label mt-3">Segundo apellido</label>
+          <input  type="text" class="form-control col-6" id="secondSurName" >
+        </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <label for="emailProfile" class="form-label mt-3">E-mail<strong>*</strong></label>
+            <input required type="text" class="form-control col-6" id="emailProfile">
+          </div>
+          <div class="col-6">
+            <div>
+              <label for="profileImg" class="form-label mt-3">Imagen de perfil</label>
+              <input type="file" class="form-control col-6 " id="chooseImg">
+              
+            </div>
+          </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <label for="contactPhone" class="form-label mt-3">Teléfono de contacto</label>
+              <input  type="text" class="form-control col-6" id="contactPhone">
+            </div>
+            
+            </div>
+          <hr class="mt-5">
+          <button class="btn btn-primary" type="submit" id="saveButton">Guardar Cambios</button>
+      </form>
     </main>
     <footer class="text-muted">
       <div class="container">

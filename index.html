@@ -41,19 +41,20 @@
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
               <div class="card shadow-2-strong" style="border-radius: 1rem">
                 <div class="card-body p-5">
-                  <h2 class="text-center">Iniciar Sesión</h2>
+                  <h3 class="text-center">Iniciar Sesión</h3>
                   <hr />
+                
                   <div class="form-outline mb-4">
                     <label class="form-label" for="email">Email</label>
                     <input
                       type="email"
                       name="email"
                       id="emailLgn"
-                      class="form-control form-control-lg"
+                      class="form-control"
                       placeholder="example@jap.com"
                     />
-                    <div class="hide text-center" id="email-error">
-                      Ingresa tu e-mail
+                    <div class="invalid-feedback">
+                      Ingresa tu email.
                     </div>
                   </div>
 
@@ -63,11 +64,11 @@
                       type="password"
                       name="password"
                       id="passwordLgn"
-                      class="form-control form-control-lg"
+                      class="form-control "
                       placeholder="•••••••••"
                     />
-                    <div class="hide text-center" id="password-error">
-                      Ingresa tu contraseña
+                    <div class="invalid-feedback">
+                      Ingresa tu Contraseña.
                     </div>
                   </div>
                   <div class="d-flex justify-content-center">
@@ -79,6 +80,7 @@
                     Ingresar
                   </button>
                 </div>
+     
                   <br />
 
                   <div id="g_id_onload"

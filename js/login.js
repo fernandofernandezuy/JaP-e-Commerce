@@ -1,26 +1,19 @@
 let password = document.getElementById("passwordLgn");
 let email = document.getElementById("emailLgn");
-let emailError = document.getElementById("email-error");
-let passwordError = document.getElementById("password-error");
 let emailvalue = document.getElementById("emailLgn").value;
 
-function inputErrorAlert(input, inputError) {
-  input.style.border = "1px solid red";
-  input.classList.add("inputlgn");
-  inputError.classList.add("show");
-}
 
 function validateLogin() {
   if (email.value.length === 0 && password.value.length > 0) {
-    inputErrorAlert(email, emailError);
+    email.classList.add("is-invalid");
     email.focus();
   } else if (email.value.length > 0 && password.value.length === 0) {
-    inputErrorAlert(password, passwordError);
+    password.classList.add("is-invalid");
     password.focus();
   } else if (email.value.length === 0 && password.value.length === 0) {
-    inputErrorAlert(email, emailError);
+    email.classList.add("is-invalid");
     email.focus();
-    inputErrorAlert(password, passwordError);
+    password.classList.add("is-invalid");
   } else {
     return true;
   }

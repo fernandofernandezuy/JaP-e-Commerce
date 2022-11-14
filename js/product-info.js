@@ -17,13 +17,13 @@ function showProductInfo(array) {
       </div>
     
         <hr />
-            <h4 class="text-left"><strong>Precio</strong></h4>
+            <h5 class="text-left"><strong>Precio</strong></h5>
                 <p class="lead">${array.currency} ${array.cost}</p>
-            <h4 class="text-left"><strong>Descripción</strong></h4>
+            <h5 class="text-left"><strong>Descripción</strong></h5>
                 <p class="lead">${array.description}</p>
-            <h4 class="text-left"><strong>Categoría</strong></h4>
+            <h5 class="text-left"><strong>Categoría</strong></h5>
                 <p class="lead">${array.category}</p>
-            <h4 class="text-left"><strong>Cantidad de vendidos</strong></h4>
+            <h5 class="text-left"><strong>Cantidad de vendidos</strong></h5>
                 <p class="lead">${array.soldCount}</p>
                 <hr />
             <div id="carouselExampleIndicators" class="carousel m-auto slide w-75" data-bs-ride="true">
@@ -104,7 +104,7 @@ function showCommentsList() {
   let htmlContentToAppend = "";
   for (let i = 0; i < currentProductsCommentsArray.length; i++) {
     let comment = currentProductsCommentsArray[i];
-    let score = parseInt(comment.score);
+    let score = parseInt(comment.score); 
 
     htmlContentToAppend += `
       <div class="list-group-item list-group-item-action">

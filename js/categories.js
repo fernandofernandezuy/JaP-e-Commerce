@@ -5,6 +5,7 @@ let currentCategoriesArray = [];
 let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
+let searchInput = document.getElementById("searchInput");
 
 function sortCategories(criteria, array) {
   let result = [];
@@ -51,10 +52,10 @@ function setCatID(id) {
   window.location = "products.html";
 }
 
-function showCategoriesList() {
+function showCategoriesList(array) {
   let htmlContentToAppend = "";
-  for (let i = 0; i < currentCategoriesArray.length; i++) {
-    let category = currentCategoriesArray[i];
+  for (let i = 0; i < array.length; i++) {
+    let category = array[i];
 
     if (
       (minCount == undefined ||
@@ -109,9 +110,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
   getJSONData(CATEGORIES_URL).then(function (resultObj) {
     if (resultObj.status === "ok") {
       currentCategoriesArray = resultObj.data;
-      showCategoriesList();
-      showUserEmail();
-      //sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
+      showCategoriesList(currentCategoriesArray);
+      
+   
     }
   });
 
@@ -136,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
       minCount = undefined;
       maxCount = undefined;
 
-      showCategoriesList();
+      showCategoriesList(currentCategoriesArray);
     });
 
   document
@@ -159,6 +160,17 @@ document.addEventListener("DOMContentLoaded", function (e) {
         maxCount = undefined;
       }
 
-      showCategoriesList();
+      showCategoriesList(currentCategoriesArray);
     });
+
+    searchInput.addEventListener("input", e => {
+      const searchString = e.target.value
+      const filteredCategories = currentCategoriesArray.filter((category) => {
+        return (
+          category.name.toLowerCase().includes(searchString)
+        )
+      })
+      showCategoriesList(filteredCategories);
+
+    })
 });
