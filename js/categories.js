@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
       const searchString = e.target.value
       const filteredCategories = currentCategoriesArray.filter((category) => {
         return (
-          category.name.toLowerCase().includes(searchString)
+          category.name.toLowerCase().includes(searchString) || category.description.toLowerCase().includes(searchString)
         )
       })
       showCategoriesList(filteredCategories);

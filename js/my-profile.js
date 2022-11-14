@@ -63,7 +63,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         fr.addEventListener("load", () => {
             const url = fr.result;
-            console.log(url);
             localStorage.setItem("profile-img", url);
             
         })
